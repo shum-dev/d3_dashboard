@@ -1,6 +1,6 @@
 d3.queue()
   .defer(d3.json, '//unpkg.com/world-atlas@1.1.4/world/50m.json')
-  .defer(d3.csv, './data/all_data.csv', function(row){
+  .defer(d3.csv, 'all_data.csv', function(row){
     return{
       continent: row.Continent,
       country: row.Country,
@@ -23,7 +23,7 @@ d3.queue()
 
     var width = +d3.select('.chart-container')
                     .node().offsetWidth;
-    
+
     var height = 300;
 
     createMap(width, width * 4 / 5);
@@ -33,7 +33,7 @@ d3.queue()
     drawPie(data, currentYear);
     drawBar(data, currentDataType, '');
 
-    d3.select('#year') 
+    d3.select('#year')
         .property('min', currentYear)
         .property('max', extremeYears[1])
         .property('value', currentYear)
@@ -80,11 +80,11 @@ d3.queue()
           .style('top', (d3.event.pageY - tooltip.node().offsetHeight - 10) + 'px');
 
       if(data) {
-        var dataValue = data[dataType] ? 
+        var dataValue = data[dataType] ?
           data[dataType].toLocaleString() + " " + units :
           'Data Not Available';
 
-      tooltip 
+      tooltip
           .html(`
             <p>Country: ${data.country}</p>
             <p>${formatDataType(dataType)}: ${dataValue}</p>
