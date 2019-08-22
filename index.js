@@ -13,6 +13,6 @@ app.get('*', function(req, res){
   res.redirect('/');
 })
 
-app.listen(3000, function(){
-  console.log('App listening on port 3000!')
+app.listen(PORT, function(){
+  console.log(`App listening on port ${PORT}!`)
 });
