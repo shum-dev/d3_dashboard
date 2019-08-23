@@ -8,6 +8,15 @@ function createMap(width, height){
       .attr('font-size', '1.5em')
       .style('text-anchor', 'middle')
       .classed('map-title', true);
+
+
+  d3.select('#map')
+    .append('text')
+        .attr('x', width / 2)
+        .attr('y', '2.7em')
+        .attr('font-size', '1em')
+        .style('text-anchor', 'middle')
+        .classed('map-subTitle', true);
 }
 
 function drawMap(geoData, climateData, year, dataType){
@@ -75,8 +84,10 @@ function drawMap(geoData, climateData, year, dataType){
       });
 
   d3.select('.map-title')
-      .text('Carbon dioxide ' + graphTitle(dataType) + ", " + year);
+      .text(`Carbon dioxide ${graphTitle(dataType)}, ${year} year`);
 
+  d3.select('.map-subTitle')
+      .text("(Click on a country to see it's trends by year)");
 
 }
 
