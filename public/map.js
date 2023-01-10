@@ -1,7 +1,6 @@
 function createMap(width, height){
   d3.select('#map')
-      .attr('width', width)
-      .attr('height', height)
+    .attr('viewBox', `0 0 ${width} ${height}`)
     .append('text')
       .attr('x', width / 2)
       .attr('y', '1em')
@@ -22,15 +21,17 @@ function createMap(width, height){
 function drawMap(geoData, climateData, year, dataType){
   var map = d3.select('#map');
 
+  const [x,y,width,height] = map.attr('viewBox').split(' ');
+
   var mapScale = d3.scaleLinear()
                     .domain([275, 715])
                     .range([45, 120])
 
   var projection = d3.geoMercator()
-                      .scale(mapScale(map.attr('width')))
+                      .scale(mapScale(width))
                       .translate([
-                        +map.attr('width') / 2,
-                        +map.attr('height') / 1.4
+                        +width / 2,
+                        +height / 1.4
                       ]);
 
   var path = d3.geoPath()

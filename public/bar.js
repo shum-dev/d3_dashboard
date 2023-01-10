@@ -1,7 +1,6 @@
 function createBar(width, height){
   var bar = d3.select('#bar')
-              .attr('width', width)
-              .attr('height', height);
+              .attr('viewBox', `0 0 ${width} ${height}`)
 
   bar.append('g')
       .classed('x-axis', true);
@@ -40,8 +39,7 @@ function drawBar(data, dataType, country){
     left: 110
   };
   var barPadding = 1;
-  var width = +bar.attr('width');
-  var height = +bar.attr('height');
+  const [x,y,width,height] = bar.attr('viewBox').split(' ');
   var countryData = data.filter(d => d.country === country)
                         .sort((a,b) => a.year - b.year);
 

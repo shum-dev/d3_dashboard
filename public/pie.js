@@ -1,7 +1,6 @@
 function createPie(width, height){
   var pie = d3.select('#pie')
-              .attr('width', width)
-              .attr('height', height);
+      .attr('viewBox', `0 0 ${width} ${height}`)
 
   pie.append('g')
       .attr('transform', `translate(${width / 2}, ${(height / 2 +10)})`)
@@ -42,8 +41,10 @@ function drawPie(data, currentYear){
                 })
                 .value(d => d.emissions);
 
+  const [x,y,width,height] = pie.attr('viewBox').split(' ');
+
   var path = d3.arc()
-                .outerRadius(+pie.attr('height') / 2 - 50)
+                .outerRadius(+height / 2 - 50)
                 .innerRadius(0);
   
   var update = pie
@@ -66,5 +67,5 @@ function drawPie(data, currentYear){
         .attr('d', path);
 
   pie.select('.pie-title')
-      .text("Total emissions by continent and region, " + currentYear);
+      .text("Total emissions " + currentYear);
 }

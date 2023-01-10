@@ -1,10 +1,6 @@
 * {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
-
-/* svg {
-  border: 1px solid black;
-} */
 
 body {
   margin: 0;
@@ -12,6 +8,8 @@ body {
 }
 
 #nav {
+  position: sticky;
+  top: 0;
   background-color: #2c3e50;
   color: white;
   padding: 15px;
@@ -32,9 +30,17 @@ body {
 }
 
 .container {
+  margin: 0.5rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   flex-direction: row;
+}
+
+.container > * {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 50%;
 }
 
 .right {
@@ -45,9 +51,9 @@ body {
 
 .chart-container {
   display: inline-block;
-  width: 45%;
-  margin: 1% 2%;
+  min-width: 320px;
   vertical-align: top;
+  text-align: center;
 }
 
 .tooltip {
@@ -65,7 +71,7 @@ body {
 }
 
 .tooltip:after {
-  content: ' ';
+  content: " ";
   position: absolute;
   left: 50%;
   border: 8px solid transparent;
